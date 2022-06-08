@@ -24,17 +24,19 @@ export interface PokemonDetailProps {
 }
 
 export function PokemonDetail({ route, navigation }: any) {
+  const [pokemon, setPokemon] = useState<PokemonDetailProps>();
+
   const colors = {
     fire: '#FF6969',
     water: '#7CC0FF',
     grass: '#7CFFD0',
   };
+
   const color = (type: string) => {
     const index = Object.keys(colors).indexOf(type);
     if (index === -1) { return colors.fire; }
     return Object.values(colors)[index];
   };
-  const [pokemon, setPokemon] = useState(null);
 
   const { pokemonNome } = route.params;
 
@@ -55,7 +57,6 @@ export function PokemonDetail({ route, navigation }: any) {
       }
 
       const { id, name, types, species, abilities, height, weight } = response.data;
-      console.log(Object.keys(response.data.types));
 
       const tiposTemp = types.map(item => {
         if (item && item.type) { return item.type.name.replace(/(^|\s)\S/g, letter => letter.toUpperCase()); }

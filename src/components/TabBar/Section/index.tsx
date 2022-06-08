@@ -8,7 +8,6 @@ interface SectionProps extends TouchableWithoutFeedbackProps {
 }
 
 export function Section({ title, selected, ...rest }: SectionProps) {
-  console.log(selected)
   return (
     <TouchableWithoutFeedback {...rest}>
       <TabSectionView selected={selected}>
