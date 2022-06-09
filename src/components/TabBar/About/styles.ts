@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const ContainerTab = styled.View`
   flex: 1;
-  padding: 26px;
+  padding: 30px;
 `;
 
 export const LineInfo = styled.View`

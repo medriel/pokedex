@@ -80,7 +80,6 @@ export function Home() {
           });
         }
       });
-
       setPokemonList(pokemons);
     } catch (error) {
       console.log(error);

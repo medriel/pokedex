@@ -41,14 +41,14 @@ export function PokemonDetail({ route, navigation }: any) {
   const { pokemonNome } = route.params;
 
   useEffect(() => {
-    searchPokemons(pokemonNome);
+    searchSpecificPokemon(pokemonNome);
   }, []);
 
   function handleBack() {
     navigation.goBack();
   }
 
-  async function searchPokemons(pokemonNome: string) {
+  async function searchSpecificPokemon(pokemonNome: string) {
     try {
       const response = await pokemonApi.get(`/pokemon/${pokemonNome.toLowerCase()}/`);
 
@@ -58,18 +58,22 @@ export function PokemonDetail({ route, navigation }: any) {
 
       const { id, name, types, species, abilities, height, weight } = response.data;
 
-      const tiposTemp = types.map(item => {
-        if (item && item.type) { return item.type.name.replace(/(^|\s)\S/g, letter => letter.toUpperCase()); }
+      const typesTemp = types.map(item => {
+        if (item && item.type) {
+          return item.type.name.replace(/(^|\s)\S/g, letter => letter.toUpperCase());
+        }
       });
 
       const habilidadesTemp = abilities.map(item => {
-        if (item && item.ability) { return item.ability.name.replace(/(^|\s)\S/g, letter => letter.toUpperCase()); }
+        if (item && item.ability) {
+          return item.ability.name.replace(/(^|\s)\S/g, letter => letter.toUpperCase());
+        }
       });
 
       const pokemonDetail: PokemonDetailProps = {
         number: id,
         name: name.replace(/(^|\s)\S/g, letter => letter.toUpperCase()),
-        types: tiposTemp,
+        types: typesTemp,
         imageURL: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${Number(id)}.png`,
         about: {
           specie: species.name.replace(/(^|\s)\S/g, letter => letter.toUpperCase()),
@@ -80,10 +84,9 @@ export function PokemonDetail({ route, navigation }: any) {
       };
       setPokemon(pokemonDetail);
     } catch (error) {
-      Alert.alert('Não foi possível carregar.');
+      Alert.alert('Ocorreu um erro durante a busca dos Pokémon');
       handleBack();
     }
-
   }
 
   if (!pokemon) { return <ActivityIndicator />; }
@@ -102,7 +105,10 @@ export function PokemonDetail({ route, navigation }: any) {
         </PokemonInfo>
         <PokemonInfoType>
           {pokemon.types && pokemon.types.map(item => (
-            <PokemonTypeContent colorSelected={color(pokemon.types[0].toLowerCase())} key={item}>
+            <PokemonTypeContent
+              key={item}
+              colorSelected={color(pokemon.types[0].toLowerCase())}
+            >
               <PokemonTypeNameText>
                 {item}
               </PokemonTypeNameText>
@@ -110,8 +116,10 @@ export function PokemonDetail({ route, navigation }: any) {
           ))}
         </PokemonInfoType>
         <PokemonInfoImage>
-          <PokemonCardBig imageURL={pokemon.imageURL}
-            type={pokemon.types[0].toLowerCase()} />
+          <PokemonCardBig
+            imageURL={pokemon.imageURL}
+            type={pokemon.types[0].toLowerCase()}
+          />
         </PokemonInfoImage>
       </Content>
       <Footer>

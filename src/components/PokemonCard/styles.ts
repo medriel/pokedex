@@ -13,7 +13,7 @@ export const Container = styled(LinearGradient)`
 
 export const ImagePokemon = styled.Image`
   width: 120px;
-  height: 120px;
+  height: 100px;
   margin-top: -60px;
 `;
 
@@ -22,6 +22,9 @@ export const TitleContainer = styled.View`
   padding: 5px 20px ;
   border-radius: 10px;
   margin-top: 15px;
+  width: 120px;
+  align-items: center;
+  display: flex;
 `;
 
 export const Title = styled.Text`
