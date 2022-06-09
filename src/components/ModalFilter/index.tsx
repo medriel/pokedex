@@ -19,7 +19,6 @@ export function ModalFilter({ hideModal, changePokemonType }: ModalFilterProps) 
   }
 
   function handleApply() {
-    console.log(categorySelected)
     changePokemonType(categorySelected);
     hideModal();
   }
@@ -56,7 +55,7 @@ export function ModalFilter({ hideModal, changePokemonType }: ModalFilterProps) 
               name={item.name}
               key={item.key}
               selected={categorySelected === item.key}
-              onPress={() => { setCategorySelected(item.key); console.log(item.key) }}
+              onPress={() => setCategorySelected(item.key)}
             />
           }
         />

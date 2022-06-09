@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from '../screens/Home';
-import { PokemonDetail } from '../screens/PokemonDetail';
+import { Home } from '../pages/Home';
+import { PokemonDetail } from '../pages/PokemonDetail';
 
 const Stack = createStackNavigator();
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PokemonDetailProps } from '../../screens/PokemonDetail';
+import { PokemonDetailProps } from '../../pages/PokemonDetail';
 import { About, ITabBarAbout } from './About';
 import { Section } from './Section';
 
@@ -28,16 +28,11 @@ export function TabBar({ pokemon }: TabBarProps) {
   const [tabAbout, setTabAbout] = useState([] as ITabBarAbout[]);
 
   useEffect(() => {
-    console.log(Object.keys(pokemon.about).indexOf('tamanho'));
-
     let tabAboutValue = tabAboutKeys.map((item) => ({
       key: item.key,
       title: item.title,
       value: Object.values(pokemon.about)[Object.keys(pokemon.about).indexOf(item.key)],
     }));
-
-    console.log(Object.values(pokemon.about))
-    console.log(pokemon.about)
 
     setTabAbout(tabAboutValue);
   }, []);

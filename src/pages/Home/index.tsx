@@ -18,6 +18,7 @@ interface PokemonResult {
 const navigation = useNavigation();
 
 export function Home() {
+
   const [visible, setVisible] = useState(false);
   const [pokemonList, setPokemonList] = useState([] as PokemonResult[]);
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,6 @@ export function Home() {
   const changePokemonType = (value: number) => setPokemonType(value);
 
   useEffect(() => {
-    console.log("useEffect1")
     if (search.length === 0) {
       setPokemonListFiltered(pokemonList);
     }
@@ -47,12 +47,10 @@ export function Home() {
   }, [search, pokemonList]);
 
   useEffect(() => {
-    console.log("useEffect2")
     searchPokemon();
   }, []);
 
   useEffect(() => {
-    console.log("useEffect3")
     if (pokemonType === 0) {
       searchPokemon();
     } else {
@@ -82,7 +80,6 @@ export function Home() {
           });
         }
       });
-
       setPokemonList(pokemons);
     } catch (error) {
       console.log(error);
@@ -90,7 +87,6 @@ export function Home() {
       setLoading(false);
       setLoadingMore(false);
     }
-
   }
 
   async function searchPokemon() {

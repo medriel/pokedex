@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components/native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import theme from './src/global/styles/theme';
 import { StatusBar } from 'react-native';
+import { AuthProvider } from './src/context/AuthContext';
 import { Routes } from './src/routes';
-
 
 const themePaper = {
   ...DefaultTheme,
@@ -18,14 +18,14 @@ const themePaper = {
 
 function App() {
   return (
-
     <ThemeProvider theme={theme}>
       <PaperProvider theme={themePaper}>
         <StatusBar />
-        <Routes />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </PaperProvider>
     </ThemeProvider>
-
   );
 }
 
